@@ -21,9 +21,16 @@ createBtn.addEventListener("click", () => {
 function createBoxes(amount) {
   let minWidth = 20;
   let minHeight = 20;
-  for (let i = 0; i < amount; i++) {
-    divBox.insertAdjacentHTML("afterbegin", `<div class="box"></div>`)
-  }
+  // for (let i = 0; i < amount; i++) {
+  //   divBox.insertAdjacentHTML("afterbegin", `<div class="box"></div>`)
+  // }
+  const elementsArray = Array.from({ length: amount }, (item, index) => {
+    const box = document.createElement("div");
+    box.classList.add("box");
+    return box;
+  });
+  divBox.append(...elementsArray);
+
   const box = document.querySelectorAll(".box");
   box.forEach(elem => {
     minWidth += 10;
