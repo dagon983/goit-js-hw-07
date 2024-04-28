@@ -13,10 +13,15 @@ const destroyBtn = document.querySelector("[data-destroy]");
 createBtn.addEventListener("click", () => {
    let currentValue = parseInt(inputNumber.value);
    if (currentValue <= 100) {
+    if (divBox.childElementCount > 0) {
+      destroyBoxes();
+    }
     createBoxes(currentValue);
    }
    inputNumber.value = "";
 })
+
+
 
 function createBoxes(amount) {
   let minWidth = 20;
@@ -30,7 +35,6 @@ function createBoxes(amount) {
     return box;
   });
   divBox.append(...elementsArray);
-
   const box = document.querySelectorAll(".box");
   box.forEach(elem => {
     minWidth += 10;
@@ -39,6 +43,7 @@ function createBoxes(amount) {
     elem.style.width = `${minWidth}px`;
     elem.style.height = `${minHeight}px`; 
   })
+  
 }
 
 destroyBtn.addEventListener("click", destroyBoxes);
